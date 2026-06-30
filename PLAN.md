@@ -272,15 +272,14 @@ Untuk mengelola siklus rilis secara profesional dan memastikan kestabilan bagi p
 
 ---
 
-## Timeline Pengembangan
-
-| Fase | Fitur | Perkiraan Hari |
-|---|---|---|
-| **v0.1-core** | connector, executor, introspection, CLI entry, pre-commit, ruff, pytest | ✅ Selesai (Hari 1-2) |
-| **v0.2-tui** | TUI mode (Rich + LazyUI), menu interaktif, output tabel | Hari 3 |
-| **v0.3-mcp** | MCP mode, 8 tools, register guide | Hari 4 |
-| **v0.4-workflows** | workflow runner, templates, scaffold command, contoh JSON | Hari 5-6 |
-| **v0.5-polish** | README, .github/ templates, CI, final testing, push GitHub | Hari 7 |
+| Fase | Fitur | Perkiraan Hari | Status |
+|---|---|---|---|
+| **v0.1-core-lib** | `core/connector.py`, `executor.py`, `introspection.py` | Hari 1 | ✅ Selesai |
+| **v0.2-cli-tests** | CLI JSON parser di `odoo_cli.py`, Error Handling, Unit Tests (`pytest`) | Hari 2 | 🚧 In Progress |
+| **v0.3-tui** | Mode interaktif (Questionary + Rich), tabel data, autocomplete model | Hari 3 | ⏳ Pending |
+| **v0.4-mcp** | Mode MCP (stdio), 8 tools terdaftar, auto-reconnect | Hari 4 | ⏳ Pending |
+| **v0.5-workflows** | JSON Workflow runner, validasi JSON, scaffold command | Hari 5-6 | ⏳ Pending |
+| **v0.6-polish** | Dokumentasi akhir, CI/CD Github Actions, Rilis | Hari 7 | ⏳ Pending |
 
 ---
 
