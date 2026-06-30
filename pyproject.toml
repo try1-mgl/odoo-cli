@@ -25,6 +25,9 @@ build-backend = "hatchling.build"
 [dependency-groups]
 dev = [
     "commitizen>=4.16.4",
+    "pre-commit>=4.6.0",
+    "pytest>=9.1.1",
+    "ruff>=0.15.20",
 ]
 
 [tool.commitizen]
@@ -34,3 +37,18 @@ version_files = [
     "pyproject.toml:version"
 ]
 update_changelog_on_bump = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "C90"]
+ignore = []
