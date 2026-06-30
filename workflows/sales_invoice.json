@@ -1,0 +1,56 @@
+{
+  "name": "Sales to Invoice Workflow (Kasus 3)",
+  "description": "Alur otomatisasi penjualan kripik s.d. pembayaran lunas Bank Mandiri",
+  "version": "1.0.0",
+  "parameters": {
+    "customer_id": 50,
+    "salesperson_id": 2,
+    "qty_pisang": 5,
+    "qty_talas": 10,
+    "qty_kentang": 20
+  },
+  "steps": [
+    {
+      "step_name": "buat_sales_order",
+      "action": "create",
+      "model": "sale.order",
+      "values": {
+        "partner_id": "{{ params.customer_id }}",
+        "user_id": "{{ params.salesperson_id }}",
+        "date_order": "2024-04-22 10:00:00"
+      },
+      "on_error": {
+        "action": "log",
+        "message": "Gagal membuat Sales Order draft."
+      }
+    },
+    {
+      "step_name": "tambah_line_pisang",
+      "action": "create",
+      "model": "sale.order.line",
+      "values": {
+        "order_id": "{{ steps.buat_sales_order.id }}",
+        "product_id": 1,
+        "product_uom_qty": "{{ params.qty_pisang }}",
+        "price_unit": 20000
+      },
+      "on_error": {
+        "action": "delete",
+        "model": "sale.order",
+        "id": "{{ steps.buat_sales_order.id }}"
+      }
+    },
+    {
+      "step_name": "konfirmasi_order",
+      "action": "execute",
+      "model": "sale.order",
+      "method": "action_confirm",
+      "ids": ["{{ steps.buat_sales_order.id }}"],
+      "on_error": {
+        "action": "delete",
+        "model": "sale.order",
+        "id": "{{ steps.buat_sales_order.id }}"
+      }
+    }
+  ]
+}
