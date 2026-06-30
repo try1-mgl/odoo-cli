@@ -46,3 +46,35 @@ Terima kasih telah berkontribusi untuk `odoo-cli`! Untuk memastikan proses penge
 *   **Type Hints:** Wajib menuliskan type hints pada parameter dan tipe data pengembalian fungsi baru.
 *   **Keamanan API:** Hindari penggunaan fungsi `eval()` untuk mengevaluasi ekspresi parameter input eksternal. Gunakan safe parser kustom.
 *   **Documentation:** Perbarui berkas `design_specs.md` jika Anda mengubah format kontrak API request/response.
+
+## Versioning & Changelog
+
+Proyek ini menggunakan **Semantic Versioning (SemVer)** dan dikelola menggunakan [Commitizen](https://commitizen-tools.github.io/commitizen/).
+
+Setiap *commit* di *branch* utama yang menggunakan format *Conventional Commits* (seperti `feat:`, `fix:`, dll.) akan secara otomatis menentukan jenis kenaikan versi saat kita menjalankan perintah bump.
+
+### Tata Cara Ganti Versi (Bump Version)
+Ganti versi **hanya** dilakukan ketika kita siap merilis fitur baru (misal: saat menutup milestone).
+
+1. Pastikan Anda berada di branch `main` (atau `dev` sesuai kebijakan rilis) dan kondisi working tree bersih:
+   ```bash
+   git status
+   ```
+2. Jalankan perintah `cz bump` menggunakan `uv`:
+   ```bash
+   uv run cz bump
+   ```
+   Perintah ini akan secara otomatis:
+   - Menganalisis riwayat *commit* (feat -> MINOR, fix -> PATCH, BREAKING CHANGE -> MAJOR).
+   - Mengubah `"version"` di `pyproject.toml`.
+   - Membuat/mengupdate file `CHANGELOG.md`.
+   - Membuat *Git Tag* untuk versi tersebut.
+3. Push perubahan berserta *tags* ke GitHub:
+   ```bash
+   git push origin dev --tags
+   ```
+
+Aturan Dasar SemVer:
+- **PATCH (x.x.1)**: Perbaikan *bug* (dihasilkan dari commit `fix:`).
+- **MINOR (x.1.x)**: Fitur baru yang *backward-compatible* (dihasilkan dari commit `feat:`).
+- **MAJOR (1.x.x)**: Perubahan signifikan yang merusak kompatibilitas sebelumnya (dihasilkan dari tag `BREAKING CHANGE:` di *body commit*).
