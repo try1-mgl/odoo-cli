@@ -1,0 +1,42 @@
+# -*- coding: utf-8 -*-
+"""
+Template Wrapper Method Bisnis Odoo
+===================================
+Berkas ini digunakan sebagai panduan bagi developer untuk menulis fungsi kustom
+dalam meluncurkan metode internal Odoo yang tidak memiliki modul bawaan standar.
+
+Salin berkas ini ke folder `odoo_methods/` dengan nama `<model_name>.py`
+(misal: `odoo_methods/sale.py` untuk model `sale.order`).
+"""
+
+def execute_method(models, db, uid, password, ids, *args, **kwargs):
+    """
+    Fungsi utama yang dipanggil oleh odoo-cli executor.
+    
+    Parameters:
+    - models (xmlrpc.client.ServerProxy): Proksi koneksi object XML-RPC Odoo.
+    - db (str): Nama database target.
+    - uid (int): User ID terautentikasi.
+    - password (str): Password atau API Key.
+    - ids (list): Daftar ID record yang akan dimodifikasi.
+    - *args, **kwargs: Argumen tambahan untuk pemanggilan method.
+    
+    Returns:
+    - dict: Response terstruktur dengan format {"success": True/False, "result": ...}
+    """
+    try:
+        # Contoh pemanggilan metode standard Odoo (misal: action_confirm)
+        result = models.execute_kw(db, uid, password, 'sale.order', 'action_confirm', [ids])
+        
+        return {
+            "success": True,
+            "result": result,
+            "message": "Metode kustom berhasil dieksekusi."
+        }
+    except Exception as e:
+        # Kembalikan error terstruktur
+        return {
+            "success": False,
+            "error": str(e),
+            "message": "Gagal mengeksekusi metode kustom Odoo."
+        }

@@ -1,0 +1,48 @@
+{
+  "name": "Template Alur Kerja Odoo",
+  "description": "Template kerangka workflow JSON standar untuk odoo-cli",
+  "version": "1.0.0",
+  "parameters": {
+    "customer_name": "Nama Pelanggan Baru",
+    "product_qty": 10
+  },
+  "prelude": [
+    {
+      "step_name": "cari_pelanggan_default",
+      "action": "lookup",
+      "model": "res.partner",
+      "domain": [["name", "=", "Administrator"]]
+    }
+  ],
+  "steps": [
+    {
+      "step_name": "buat_atau_update_partner",
+      "action": "create_or_update",
+      "model": "res.partner",
+      "search_domain": [["name", "=", "{{ params.customer_name }}"]],
+      "defaults": {
+        "name": "{{ params.customer_name }}",
+        "is_company": false,
+        "customer_rank": 1
+      },
+      "on_error": {
+        "action": "log",
+        "message": "Gagal membuat partner {{ params.customer_name }}. Mengeksekusi pembatalan..."
+      }
+    },
+    {
+      "step_name": "buat_order_penjualan",
+      "action": "create",
+      "model": "sale.order",
+      "values": {
+        "partner_id": "{{ steps.buat_atau_update_partner.id }}",
+        "date_order": "2026-06-30 00:00:00"
+      },
+      "on_error": {
+        "action": "delete",
+        "model": "res.partner",
+        "id": "{{ steps.buat_atau_update_partner.id }}"
+      }
+    }
+  ]
+}

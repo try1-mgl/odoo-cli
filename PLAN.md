@@ -148,9 +148,10 @@ odoo-cli/
 │   ├── adr/
 │   │   ├── 0001-use-python-over-go.md
 │   │   ├── 0002-xmlrpc-over-rest.md
-│   │   ├── 0003-rich-lazyui-over-textual.md
+│   │   ├── 0003-rich-questionary-over-textual.md
 │   │   ├── 0004-three-mode-interface.md
-│   │   └── 0005-introspection-caching.md
+│   │   ├── 0005-introspection-caching.md
+│   │   └── 0006-ai-safety-guardrails.md
 │   └── design_specs.md         ← User stories, API contract, C4 diagram
 │
 ├── core/
