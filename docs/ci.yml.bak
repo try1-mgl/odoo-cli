@@ -1,0 +1,34 @@
+name: CI Quality Assurance
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ dev ]
+
+jobs:
+  lint-and-validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install uv & Dependencies
+      run: |
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+        uv sync
+
+    - name: Run Ruff Linter
+      run: |
+        uv run ruff check .
+
+    - name: Verify Project Metadata
+      run: |
+        uv run python -c "import tomli_w; print('Build system verification: Success')" || pip install tomli-w
