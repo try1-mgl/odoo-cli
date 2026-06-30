@@ -70,8 +70,7 @@ uv run python odoo_cli.py --mcp
 Silakan pelajari dokumen pedoman pengkodean kami berikut:
 *   [PLAN.md](PLAN.md) — Rencana pengembangan dan peta jalan fitur.
 *   [AGENTS.md](AGENTS.md) — Aturan gaya koding khusus asisten koding AI.
-*   [CONTRIBUTING.md](CONTRIBUTING.md) — Panduan kolaborasi dan PR.
-*   [BRANCH_CONVENTION.md](BRANCH_CONVENTION.md) — Konvensi nama branch & pesan git commit.
+*   [CONTRIBUTING.md](CONTRIBUTING.md) — Panduan kolaborasi, PR, dan konvensi branch.
 *   [docs/design_specs.md](docs/design_specs.md) — Arsitektur C4, User Stories, dan Kontrak API JSON.
 
 ---

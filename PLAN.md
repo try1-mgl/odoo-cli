@@ -84,9 +84,9 @@ Flow bisnis didefinisikan sebagai file JSON.
   "params": ["customer", "products", "vendor"],
   "steps": [
     {
-      "action": "create", 
-      "model": "sale.order", 
-      "values": "{{so_data}}", 
+      "action": "create",
+      "model": "sale.order",
+      "values": "{{so_data}}",
       "save_as": "so",
       "on_error": [
         {"action": "delete", "model": "sale.order", "id": "{{so}}"}
@@ -192,8 +192,7 @@ odoo-cli/
     │   └── 04_compatibility.yml
     ├── workflows/
     │   └── ci.yml              ← Lint + validate otomatis
-    ├── CONTRIBUTING.md
-    └── BRANCH_CONVENTION.md
+    └── CONTRIBUTING.md         ← Panduan kontribusi, konvensi PR & Branch
 ```
 
 ---
@@ -277,7 +276,7 @@ Untuk mengelola siklus rilis secara profesional dan memastikan kestabilan bagi p
 
 | Fase | Fitur | Perkiraan Hari |
 |---|---|---|
-| **v0.1-core** | connector, executor, introspection, CLI entry, pyproject.toml, .gitignore | Hari 1-2 |
+| **v0.1-core** | connector, executor, introspection, CLI entry, pre-commit, ruff, pytest | ✅ Selesai (Hari 1-2) |
 | **v0.2-tui** | TUI mode (Rich + LazyUI), menu interaktif, output tabel | Hari 3 |
 | **v0.3-mcp** | MCP mode, 8 tools, register guide | Hari 4 |
 | **v0.4-workflows** | workflow runner, templates, scaffold command, contoh JSON | Hari 5-6 |
@@ -339,7 +338,7 @@ Keputusan desain penting dicatat sebagai **ADR (Architecture Decision Records)**
 |---|---|---|---|
 | **ADR-0001** | Python over Go | ✅ Disetujui | `docs/adr/0001-use-python-over-go.md` |
 | **ADR-0002** | XML-RPC over REST | ✅ Disetujui | `docs/adr/0002-xmlrpc-over-rest.md` |
-| **ADR-0003** | Rich + LazyUI over Textual | ✅ Disetujui | `docs/adr/0003-rich-lazyui-over-textual.md` |
+| **ADR-0003** | Rich + Questionary over Textual | ✅ Disetujui | `docs/adr/0003-rich-questionary-over-textual.md` |
 | **ADR-0004** | Three-mode interface (CLI/TUI/MCP) | ✅ Disetujui | `docs/adr/0004-three-mode-interface.md` |
 | **ADR-0005** | Introspection Caching Strategy | ✅ Disetujui | `docs/adr/0005-introspection-caching.md` |
 
