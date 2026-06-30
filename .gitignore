@@ -16,6 +16,11 @@ env/
 
 # Project Configurations (Sensitif)
 profiles.json
+.env
+.env.*
+!.env.template
+!.env.example
+.env.local
 
 # IDE / Editor
 .vscode/
