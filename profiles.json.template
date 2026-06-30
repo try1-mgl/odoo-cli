@@ -1,0 +1,19 @@
+{
+  "default": "local_dev",
+  "profiles": {
+    "local_dev": {
+      "url": "http://localhost:8069",
+      "db": "learn",
+      "username": "admin@yourcompany.com",
+      "password": "yourpassword",
+      "require_approval": false
+    },
+    "production": {
+      "url": "https://odoo.yourcompany.com",
+      "db": "production_db",
+      "username": "admin@yourcompany.com",
+      "password": "your_api_key_or_password",
+      "require_approval": true
+    }
+  }
+}
