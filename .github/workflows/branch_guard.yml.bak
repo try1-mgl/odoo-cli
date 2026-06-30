@@ -1,0 +1,27 @@
+name: Branch Merge Guard
+
+on:
+  pull_request:
+    branches: [ main, dev ]
+
+jobs:
+  check-branch-rules:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Validate PR Source for main Branch
+      if: github.base_ref == 'main' && github.head_ref != 'dev'
+      run: |
+        echo "❌ ERROR: Merging directly to 'main' is only allowed from 'dev' branch."
+        echo "Source branch was: ${{ github.head_ref }}"
+        exit 1
+
+    - name: Validate PR Source for dev Branch (Naming Convention)
+      if: github.base_ref == 'dev'
+      run: |
+        BRANCH_NAME="${{ github.head_ref }}"
+        if [[ ! "$BRANCH_NAME" =~ ^(feat|fix|workflow|docs|chore)/ ]]; then
+          echo "❌ ERROR: Branch name '$BRANCH_NAME' does not match naming conventions."
+          echo "Please rename your branch to start with 'feat/', 'fix/', 'workflow/', 'docs/', or 'chore/'."
+          exit 1
+        fi
+        echo "✅ Branch naming convention matched."
