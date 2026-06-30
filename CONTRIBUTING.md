@@ -26,7 +26,7 @@ Terima kasih telah berkontribusi untuk `odoo-cli`! Untuk memastikan proses penge
     git checkout dev
     git pull origin dev
     ```
-2.  Buat branch baru dari `dev` sesuai dengan konvensi [BRANCH_CONVENTION.md](BRANCH_CONVENTION.md):
+2.  Buat branch baru dari `dev` sesuai dengan **Konvensi Penamaan Branch** di bawah:
     ```bash
     git checkout -b feat/connector-timeout
     ```
@@ -41,13 +41,39 @@ Terima kasih telah berkontribusi untuk `odoo-cli`! Untuk memastikan proses penge
 
 ---
 
-## 3. Standard Kualitas Kode
+## 3. Konvensi Penamaan Branch & Commit
+
+### Aturan Penamaan Branch
+Semua pengerjaan wajib menggunakan branch yang dibuat dari `dev` dan dimerge kembali ke `dev` melalui Pull Request (PR).
+
+| Tipe Branch | Format Nama | Contoh |
+| :--- | :--- | :--- |
+| **Fitur Baru** | `feat/<nama-fitur>` | `feat/mcp-server` |
+| **Perbaikan Bug** | `fix/<nama-bug>` | `fix/connection-timeout` |
+| **Alur Workflow** | `workflow/<nama-alur>` | `workflow/sales-invoice` |
+| **Dokumentasi** | `docs/<topik>` | `docs/api-contract` |
+
+### Format Commit Message (Conventional Commits)
+Format commit: `<type>(<scope>): <subject>`
+
+**Tipe Commit yang Diizinkan:**
+*   `feat`: Penambahan fitur baru (misal: `feat(mcp): tambah tool introspeksi ERD`)
+*   `fix`: Perbaikan bug (misal: `fix(connector): tangani timeout XML-RPC`)
+*   `docs`: Perubahan dokumentasi saja
+*   `style`: Perapian kode (formatting, missing semi-colons, ruff fix)
+*   `refactor`: Perubahan struktur kode tanpa mengubah fungsi luar
+*   `test`: Penambahan atau perbaikan unit test
+*   `chore`: Pemeliharaan build tool, versi dependency, dll.
+
+---
+
+## 4. Standard Kualitas Kode
 
 *   **Type Hints:** Wajib menuliskan type hints pada parameter dan tipe data pengembalian fungsi baru.
 *   **Keamanan API:** Hindari penggunaan fungsi `eval()` untuk mengevaluasi ekspresi parameter input eksternal. Gunakan safe parser kustom.
 *   **Documentation:** Perbarui berkas `design_specs.md` jika Anda mengubah format kontrak API request/response.
 
-## Versioning & Changelog
+## 5. Versioning & Changelog
 
 Proyek ini menggunakan **Semantic Versioning (SemVer)** dan dikelola menggunakan [Commitizen](https://commitizen-tools.github.io/commitizen/).
 
