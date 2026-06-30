@@ -1,5 +1,7 @@
 # odoo-cli — Terminal Client & MCP Server for Odoo ERP
 
+[![CI Status](https://github.com/try1-mgl/odoo-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/try1-mgl/odoo-cli/actions/workflows/ci.yml)
+
 `odoo-cli` adalah alat antarmuka baris perintah (CLI), terminal interaktif (TUI), dan Server Model Context Protocol (MCP) terpadu yang dirancang khusus untuk mempermudah eksplorasi, manipulasi data, dan otomatisasi alur kerja pada server Odoo (versi 17 ke atas).
 
 Alat ini menjembatani interaksi antara pengembang manusia (melalui terminal interaktif) dan AI Coding Assistant (seperti Claude/Gemini via protokol MCP) secara aman dan responsif.
